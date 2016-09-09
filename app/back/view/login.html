@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>ECSHOP 管理中心</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <link type="text/css" rel="stylesheet" href="public/back/styles/general.css">
+  <link type="text/css" rel="stylesheet" href="public/back/styles/main.css">
+
+  <style type="text/css">
+body {
+  color: white;
+}
+</style>
+  <script language="JavaScript" type="Text/Javascript">
+<!--
+if (window.top != window)
+{
+  window.top.location.href = document.location.href;
+}
+//-->
+</script>
+</head>
+<body style="background: #278296">
+  <form name="theForm" action="index.php?m=back&c=Admin&a=check" method="post">
+    <table cellspacing="0" cellpadding="0" align="center" style="margin-top: 100px">
+      <tbody>
+        <tr>
+          <td>
+            <img width="178" height="256" border="0" alt="ECSHOP" src="public/back/images/login.png"></td>
+          <td style="padding-left: 50px">
+            <table>
+              <tbody>
+                <tr>
+                  <td>管理员姓名：</td>
+                  <td>
+                    <input type="text" name="username"></td>
+                </tr>
+                <tr>
+                  <td>管理员密码：</td>
+                  <td>
+                    <input type="password" name="password"></td>
+                </tr>
+
+                <tr>
+                  <td>验证码：</td>
+                  <td>
+                    <input type="text" class="capital" name="captcha"></td>
+                </tr>
+                <tr>
+                  <td align="right" colspan="2">
+                    <img width="145" height="20" border="1" title="看不清？点击更换另一个验证码。" style="cursor: pointer;" alt="CAPTCHA" src="index.php?m=back&c=Admin&a=captcha" onclick="this.src='index.php?m=back&c=Admin&a=captcha&'+Math.random()"></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <input type="checkbox" id="remember" name="remember" value="1">
+                    <label for="remember">请保存我这次的登录信息。</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>
+                    <input type="submit" class="button" value="进入管理中心"></td>
+                </tr>
+                <!--  <tr>
+                <td align="right" colspan="2">
+                  »
+                  <a style="color:white" href="../">返回首页</a>
+                  »
+                  <a style="color:white" href="get_password.php?act=forget_pwd">您忘记了密码吗?</a>
+                </td>
+              </tr>
+              -->
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>

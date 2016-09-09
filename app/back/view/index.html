@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>ECSHOP 管理中心</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<script language="JavaScript" type="Text/Javascript">
+<!--
+/**
+ * 如果当前窗口不是最上层窗口（比如是在Iframe中），那么就把自己变为最上层窗口。
+ * 这可以防止别的网站把你自己的网站放在他的Iframe中，
+ * 从而损害你的利益（因为会误导浏览者）。
+ */
+if (window.top != window)
+{
+  window.top.location.href = document.location.href;
+}
+
+//-->
+</script>
+
+</head>
+
+<frameset border="0" framespacing="0" rows="76,*">
+  <frame scrolling="no" frameborder="no" name="header-frame" id="header-frame" src="index.php?m=back&c=Manage&a=top"></frame>
+  <frameset id="frame-body" border="0" framespacing="0" cols="180, 10, *">
+    <frame scrolling="yes" frameborder="no" name="menu-frame" id="menu-frame" src="index.php?m=back&c=Manage&a=menu"></frame>
+    <frame scrolling="no" frameborder="no" name="drag-frame" id="drag-frame" src="index.php?m=back&c=Manage&a=drag"></frame>
+    <frame scrolling="yes" frameborder="no" name="main-frame" id="main-frame" src="index.php?m=back&c=Manage&a=main"></frame>
+  </frameset>
+</frameset>
+
+</html>
