@@ -69,25 +69,28 @@ EOP;
     }
 
     public function updateStudent($userId, $data = array()){
+//        $query="INSERT INTO tb_chengji SET xuesheng=:xuesheng,yuwen=:yuwen";
+//        $result=$pdo->prepare($query);
+//
+//        $xuesheng='赵天平';
+//        $yuwen='90';
+//        $result->bindParam(':xuesheng',$xuesheng);
+//        $result->bindParam(':yuwen',$yuwen);
+//        $result->execute();
         // 拼凑SQL，update语法
-        $prepareSql = "update student set name = ?,sex = ?,age = ?,favorite = ?,class = ?,height = ?,weight = ?,tel = ?,address = ?,resume = ? where id='$userId'";
-        if ($stmt = $this->_dao->prepare($prepareSql)) {
-            var_dump($prepareSql);
-            $name = $data["name"];
-            $sex = $data["sex"];
-            $age = $data["age"];
-            $favorite = $data["favorite"];
-            $class = $data["class"];
-            $height = $data["height"];
-            $weight = $data["weight"];
-            $tel = $data["tel"];
-            $address = $data["address"];
-            $resume = $data["resume"];
-            $stmt->bind_param("ssssssssss", $name, $sex, $age, $favorite, $class, $height, $weight, $tel, $address, $resume);
-            return $stmt->execute();
-        }else{
-            var_dump("出错了");
-        }
-
+        $prepareSql = "update student set name = :name,sex = :sex,age = :age,favorite = :favorite,class = :class,height = :height,weight = :weight,tel = :tel,address = :address,resume = :resume where id= :userId";
+        $result = $this->_dao->prepare($prepareSql);
+        $result->bindParam(':name',$data["name"]);
+        $result->bindParam(':sex',$data["sex"]);
+        $result->bindParam(':age',$data["age"]);
+        $result->bindParam(':favorite',$data["favorite"]);
+        $result->bindParam(':class',$data["class"]);
+        $result->bindParam(':height',$data["height"]);
+        $result->bindParam(':weight',$data["weight"]);
+        $result->bindParam(':tel',$data["tel"]);
+        $result->bindParam(':address',$data["address"]);
+        $result->bindParam(':resume',$data["resume"]);
+        $result->bindParam(':userId',$userId);
+        return $result->execute();
     }
 }

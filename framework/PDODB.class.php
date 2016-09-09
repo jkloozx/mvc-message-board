@@ -121,7 +121,7 @@ class PDODB implements i_DAO {
 	}
 	public function prepare($sql='') {
 		// 统一执行
-		return $this->prepare($sql);
+		return $this->_pdo->prepare($sql);
 	}
 	// 转义SQL，防止注入
 	public function escapeString($str='') {

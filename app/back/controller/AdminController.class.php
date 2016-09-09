@@ -12,6 +12,8 @@ class AdminController extends ModuleController {
 		require './app/home/view/auth/login.php';
 	}
 	public function registerAction() {
+//        var_dump(isset($no_check[CONTROLLER]) && in_array(ACTION, $no_check[CONTROLLER]));
+//        die;
         // 载入表单视图页面
 		require './app/home/view/auth/register.php';
 	}
@@ -117,10 +119,10 @@ class AdminController extends ModuleController {
         // 根据处理结果，做出操作
         if ($update_result) {
             // 插入成功
-            $this->_jumpNow('index.php?m=back&c=Goods&a=list');
+            $this->_jumpNow('index.php?m=back&c=MessageBoard&a=index');
         } else {
             // 插入失败
-            $this->_jumpWait('index.php?m=back&c=Goods&a=add', '添加失败：失败原因');
+            $this->_jumpWait('index.php?m=back&c=Admin&a=showUpdate', '修改失败',2);
         }
     }
 
