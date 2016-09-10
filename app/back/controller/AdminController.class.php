@@ -3,7 +3,9 @@
 /**
  * 后台管理员相关功能控制器类，例如，登陆，退出，注册，权限管理，找回密码，管理增删改查
  */
-class AdminController extends ModuleController {
+class AdminController extends IsAdminController {
+    private $per = 5;
+    private $admin_list = array(4,5,6);
 	/**
 	 * 管理员登录表单展示
 	 */
@@ -96,7 +98,8 @@ class AdminController extends ModuleController {
 
     public function showUpdateAction(){
         $m_admin = Factory::M('Admin');
-        $student = $m_admin->getStudent($_SESSION["admin"]["id"]);
+        $userId = isset($_POST["userId"]) ? $_POST["userId"] : $_SESSION["admin"]["id"];
+        $student = $m_admin->getStudent($userId);
         require './app/back/view/auth/update-student.php';
     }
 
@@ -114,7 +117,7 @@ class AdminController extends ModuleController {
         $data['resume'] = $_POST['resume'];
         // 利用模型完成处理
         $m_admin = Factory::M('Admin');
-        $userId = $_SESSION["admin"]["id"];
+        $userId = $_POST["userId"];
         $update_result = $m_admin->updateStudent($userId,$data);
         // 根据处理结果，做出操作
         if ($update_result) {
@@ -123,6 +126,74 @@ class AdminController extends ModuleController {
         } else {
             // 插入失败
             $this->_jumpWait('index.php?m=back&c=Admin&a=showUpdate', '修改失败',2);
+        }
+    }
+    public function updateStudentAction() {
+        // 收集表单数据
+        if (in_array($_SESSION["admin"]["id"],$this->admin_list)){
+            $data['name'] = $_POST['name'];
+            $data['sex'] = $_POST['sex'];
+            $data['age'] = $_POST['age'];
+            $data['favorite'] = $_POST['favorite'];
+            $data['class'] = $_POST['class'];
+            $data['height'] = $_POST['height'];
+            $data['weight'] = $_POST['weight'];
+            $data['tel'] = $_POST['tel'];
+            $data['address'] = $_POST['address'];
+            $data['resume'] = $_POST['resume'];
+            // 利用模型完成处理
+            $userId = $_POST["userId"];
+            $update_result = $m_admin->updateStudent($userId,$data);
+            // 根据处理结果，做出操作
+            if ($update_result) {
+                // 插入成功
+                $this->_jumpNow('index.php?m=back&c=MessageBoard&a=index');
+            } else {
+                // 插入失败
+                $this->_jumpWait('index.php?m=back&c=Admin&a=showUpdate', '修改失败',2);
+            }
+        }else{
+            $this->_jumpNow('index.php?m=back&c=MessageBoard&a=index');
+        }
+
+    }
+
+    public function getStudentsAction(){
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $m_admin = Factory::M("Admin");
+        $total = $m_admin->getStudentTotal();
+        $page_obj = new Page($total, $this->per);
+        $pagelist = $page_obj->fpage(array( 0, 1, 2, 3, 4, 5, 6, 7, 8));
+        $totalPage = ceil($total / $this->per);
+        if ($page <= 0){
+            $page = 1;
+        }
+        if ($page > $totalPage){
+            $page = $totalPage;
+        }
+        $start = ($page - 1) * $this->per;
+        $end = $this->per;
+        $students = $m_admin->getSomeStudents($start, $end);
+//        var_dump($total, $myMessages);
+        require "./app/back/view/auth/studentsPage.php";
+
+
+        // 载入留言板模板
+//        require './app/back/view/MessageBoard/index.php';
+    }
+
+
+    /**
+     * @return int
+     */
+    public function showStudentsAction(){
+        $admin_list = $this->admin_list;
+        $userId = $_SESSION["admin"]["id"];
+//        if (in_array($admin_list,$userId)){
+        if (in_array($userId,$admin_list)){
+            require "./app/back/view/auth/showStudents.php";
+        }else{
+            $this->_jumpNow('index.php?m=back&c=MessageBoard&a=index');
         }
     }
 

@@ -93,4 +93,10 @@ EOP;
         $result->bindParam(':userId',$userId);
         return $result->execute();
     }
+
+    public function getStudentTotal() {
+        $sql = "select count(*) from student";
+        // 执行
+        return $this->_dao->fetchOne($sql);
+    }
 }

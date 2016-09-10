@@ -23,7 +23,7 @@
 <body>
 <?php require "./app/back/view/layout/nav.php";?>
 <form style="margin:100px auto;" action="index.php?m=back&c=Admin&a=update" method="post" class="form-horizontal" role="form">
-    <input type="hidden" name="id" value="<?php echo $student["id"];?>">
+    <input type="hidden" name="userId" value="<?php echo $student["id"];?>">
     <div style="" class="form-group">
         <label for="name" class="col-sm-2 control-label">姓名</label>
         <div class="col-sm-10 col-lg-3">

@@ -19,7 +19,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php?m=back&c=MessageBoard&a=index">留言板</a>
+                    <a class="navbar-brand" href="index.php?m=home&c=Qt&a=index">留言板</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul id="nav" class="nav navbar-nav">

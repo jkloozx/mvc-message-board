@@ -32,7 +32,9 @@
 <!-- NAVBAR
 ================================================== -->
 <body>
-<?php require "./app/back/view/layout/nav.php";?>
+<?php
+require "./app/back/view/layout/nav.php";
+?>
 <!-- Carousel
 ================================================== -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">

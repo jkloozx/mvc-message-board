@@ -33,7 +33,7 @@ class ModuleController extends Controller {
 		// 哪个控制器的那个动作不需要校验
 		$no_check = array(
 			'Admin' => array('login', 'check', 'captcha','register'),
-			'MessageBoard' => array('')
+			'Admin' => array('login', 'check', 'captcha','register')
 			// 控制器名 => 动作名列表
 			);
 		// 判断是否处于特例列表
