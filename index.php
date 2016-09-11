@@ -46,7 +46,7 @@ $default_module = 'home';
 $current_module = isset($_GET['m']) ? $_GET['m'] : $default_module;
 define('MODULE', $current_module);
 // 获得当前的控制器名
-$default_controller = 'Shop';// 义：默认的控制器名
+$default_controller = 'Qt';// 义：默认的控制器名
 // 判断URL中是否存在get参数c，如果存在则使用，否则使用默认的
 $current_controller = isset($_GET['c']) ? $_GET['c'] : $default_controller;// 义：当前控制器
 // 通常会，定义常量，存储当前的控制器名（没有Controller部分）
